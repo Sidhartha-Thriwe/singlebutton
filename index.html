@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirect to App Store</title>
+    <style>
+        /* CSS to style the download button */
+        #downloadButton {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #28a745; /* Green color */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #downloadButton:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        /* Optional: Responsive adjustments */
+        @media (max-width: 600px) {
+            #downloadButton {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            var downloadButton = document.getElementById("downloadButton");
+
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                downloadButton.href = "https://apps.apple.com/app/duolingo-language-lessons/id570060128";
+            } else if (/android/i.test(userAgent)) {
+                downloadButton.href = "https://play.google.com/store/apps/details?id=com.duolingo&hl=en_IN&pli=1";
+            } else {
+                downloadButton.href = "#";
+                downloadButton.onclick = function() {
+                    alert("Please visit the app store from your mobile device.");
+                };
+            }
+        });
+    </script>
+</head>
+<body>
+    <a id="downloadButton" href="#">Download Our App</a>
+</body>
+</html>
